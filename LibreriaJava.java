@@ -14,6 +14,7 @@ public class LibreriaJava
         int pLibre = 0;
         int prestadoDecision;
         int libroEliminar;
+        int vacio;
         boolean decision;
 
 
@@ -65,12 +66,16 @@ public class LibreriaJava
                     break;
 
                 case 2:
+                    vacio = 0;
                     System.out.println("Usted eligio Ver libros\n");
-                    if(pLibre == 0)
+                    for(int p = 0; p < pLibre; p++)
                     {
-                        System.out.println("Lo lamentamos, no tenemos libros dentro de nuestro sistema\n");
+                        if(titulo[p] != null)
+                        {
+                            vacio++;
+                        }
                     }
-                    else
+                    if(vacio != 0)
                     {
                         System.out.println("Estos son los libros que hay disponibles dentro de nuestra biblioteca:\n");
                         for(int j = 0; j < pLibre; j++)
@@ -103,7 +108,11 @@ public class LibreriaJava
                             }
                         }
                     }
-                    break;
+                    else
+                    {
+                        System.out.println("Lo lamentamos, no tenemos libros disponibles dentro de nuestro sistema.");
+                    }
+                break;
 
                 case 3:
                     System.out.println("Usted ha elegido Eliminar un libro\n");
@@ -122,7 +131,7 @@ public class LibreriaJava
                             System.out.println("Libro eliminado exitosamente, redirigiendo a menu principal");
                         }
                     }
-                break;
+                    break;
             }
         }while(opcion != 4);
         System.out.println("¡Gracias por usar Libreria.Java!, que tenga un buen dia, vuelva pronto :)\n");
