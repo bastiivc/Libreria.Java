@@ -17,7 +17,6 @@ public class LibreriaJava
         int vacio;
         boolean decision;
 
-
         do
         {
             System.out.println("\n--------------------------------------------------------------------------------------------\n");
@@ -44,7 +43,6 @@ public class LibreriaJava
                         vecesPrestado[0] = 0;
                         System.out.println("\nTitulo del libro agregado es: " + titulo[0] + "\n" + "Su autor es: " + autor[0] + "\n" + "Codigo de Identificacion Unico: " + codigoLibro[0] + "\n" + "Su numero de veces prestado es: " + vecesPrestado[0]);
                         pLibre++;
-
                     }
                     else
                     {
@@ -63,7 +61,7 @@ public class LibreriaJava
                         System.out.println("\nTitulo del libro agregado es: " + titulo[i] + "\n" + "Su autor es: " + autor[i] + "\n" + "Codigo de Identificacion Unico: " + codigoLibro[i] + "\n" + "Su numero de veces prestado es: " + vecesPrestado[i]);
                         pLibre++;
                     }
-                    break;
+                break;
 
                 case 2:
                     vacio = 0;
@@ -80,6 +78,10 @@ public class LibreriaJava
                         System.out.println("Estos son los libros que hay disponibles dentro de nuestra biblioteca:\n");
                         for(int j = 0; j < pLibre; j++)
                         {
+                            if(titulo[j] == null)
+                            {
+                                j++;
+                            }
                             System.out.println(j + 1 +"." + "Titulo: " +titulo[j] + " " + "Autor: " + autor[j] + " " + "Cantidad de veces Prestado: " + vecesPrestado[j] + " " + "Codigo unico del libro: " + codigoLibro[j] +"\n");
                         }
                         System.out.println("¿Le gustaria tomar prestado uno de estos libros?\nPresione '1' para SI\nPresione '2' para NO");
@@ -131,9 +133,10 @@ public class LibreriaJava
                             System.out.println("Libro eliminado exitosamente, redirigiendo a menu principal");
                         }
                     }
-                    break;
+                break;
             }
         }while(opcion != 4);
+
         System.out.println("¡Gracias por usar Libreria.Java!, que tenga un buen dia, vuelva pronto :)\n");
         System.out.println("--------------------------------------------------------------------------------------------");
     }
