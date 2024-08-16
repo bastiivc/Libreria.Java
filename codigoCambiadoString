@@ -1,0 +1,113 @@
+import java.io.*;
+
+public class LibreriaJava
+{
+    public static void main(String[] args) throws IOException
+    {
+        String[] codigoLibro = new String[100]; // Cambiado a String
+        String[] titulo = new String[100];
+        String[] autor = new String[100];
+        Integer[] vecesPrestado = new Integer[100];
+
+        int opcion;
+        int pLibre = 0;
+        int prestadoDecision;
+        String libroEliminar; // Cambiado a String
+        int vacio;
+        boolean decision;
+
+        do
+        {
+            System.out.println("\n--------------------------------------------------------------------------------------------\n");
+            System.out.println("Bienvenido a Libreria.Java, por favor seleccione una opcion\n");
+            System.out.println("Opcion 1: Agregar libro\nOpcion 2: Ver libros\nOpcion 3: Eliminar un libro\nOpcion 4: Salir del programa");
+
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+            opcion = Integer.parseInt(entrada.readLine());
+
+            switch(opcion)
+            {
+                case 1:
+                    System.out.println("Usted eligió agregar un libro\n");
+                    codigoLibro[pLibre] = String.valueOf(pLibre); // Asignar código como String
+                    System.out.println("Por favor, ingrese el título del libro");
+                    titulo[pLibre] = entrada.readLine();
+                    System.out.println("Excelente, ahora ingrese el autor de: " + titulo[pLibre]);
+                    autor[pLibre] = entrada.readLine();
+                    vecesPrestado[pLibre] = 0;
+                    System.out.println("\nTítulo del libro agregado es: " + titulo[pLibre] + "\n" + "Su autor es: " + autor[pLibre] + "\n" + "Código de Identificación Único: " + codigoLibro[pLibre] + "\n" + "Su número de veces prestado es: " + vecesPrestado[pLibre]);
+                    pLibre++;
+                    break;
+
+                case 2:
+                    vacio = 0;
+                    System.out.println("Usted eligió Ver libros\n");
+                    for(int p = 0; p < pLibre; p++)
+                    {
+                        if(titulo[p] != null)
+                        {
+                            vacio++;
+                        }
+                    }
+                    if(vacio != 0)
+                    {
+                        System.out.println("Estos son los libros que hay disponibles dentro de nuestra biblioteca:\n");
+                        for(int j = 0; j < pLibre; j++)
+                        {
+                            if(titulo[j] == null)
+                            {
+                                continue;
+                            }
+                            System.out.println((j + 1) + ". Título: " + titulo[j] + " Autor: " + autor[j] + " Cantidad de veces Prestado: " + vecesPrestado[j] + " Código único del libro: " + codigoLibro[j] +"\n");
+                        }
+                        System.out.println("¿Le gustaría tomar prestado uno de estos libros?\nPresione '1' para SI\nPresione '2' para NO");
+                        prestadoDecision = Integer.parseInt(entrada.readLine());
+                        decision = prestadoDecision == 1;
+
+                        if(decision)
+                        {
+                            System.out.println("Ingrese el código único del libro deseado");
+                            String rentado = entrada.readLine();
+                            for(int k = 0 ; k < pLibre ; k++)
+                            {
+                                if(codigoLibro[k] != null && codigoLibro[k].equals(rentado))
+                                {
+                                    vecesPrestado[k]++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            System.out.println("Entiendo, lo dirigiré de vuelta al menú principal");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Lo lamentamos, no tenemos libros disponibles dentro de nuestro sistema.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Usted ha elegido Eliminar un libro\n");
+                    System.out.println("Ingrese el código único del libro que se desea eliminar");
+                    libroEliminar = entrada.readLine();
+                    for(int h = 0; h < pLibre; h++)
+                    {
+                        if(codigoLibro[h] != null && codigoLibro[h].equals(libroEliminar))
+                        {
+                            System.out.println("Libro Eliminado: " + titulo[h] + " autor: " + autor[h] + "\n");
+                            titulo[h] = null;
+                            autor[h] = null;
+                            vecesPrestado[h] = null;
+                            codigoLibro[h] = null;
+                            System.out.println("Libro eliminado exitosamente, redirigiendo a menú principal");
+                        }
+                    }
+                    break;
+            }
+        } while(opcion != 4);
+
+        System.out.println("¡Gracias por usar Libreria.Java!, que tenga un buen día, vuelva pronto :)\n");
+        System.out.println("--------------------------------------------------------------------------------------------");
+    }
+}
